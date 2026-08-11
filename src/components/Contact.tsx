@@ -30,6 +30,7 @@ export default function Contact() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
+    
 
     try {
       const response = await fetch(siteConfig.formspreeEndpoint, {
