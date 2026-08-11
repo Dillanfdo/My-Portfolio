@@ -3,7 +3,8 @@ export const siteConfig = {
   title: 'Frontend Developer',
   description:
     'Senior Software Engineer with 7+ years of experience building modern, responsive and scalable web applications.',
-  email: 'hello@dillanfernando.dev',
+  email: 'dillanfdo@gmail.com',
+  formspreeEndpoint: 'https://formspree.io/f/myegwnqo',
   github: 'https://github.com/dillanfernando',
   linkedin: 'https://linkedin.com/in/dillanfernando',
   availability: 'Available for freelance projects',

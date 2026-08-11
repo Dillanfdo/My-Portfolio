@@ -21,16 +21,43 @@ const initialFormData: FormData = {
   message: '',
 };
 
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+
 export default function Contact() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>('idle');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Ready for Formspree, Resend, EmailJS, or custom API integration
-    console.log('Form submission:', formData);
-    setSubmitted(true);
-    setFormData(initialFormData);
+    setStatus('submitting');
+
+    try {
+      const response = await fetch(siteConfig.formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _replyto: formData.email,
+          _subject: `New Project Inquiry from ${formData.name}`,
+          company: formData.company || 'Not provided',
+          need: formData.need || 'Not specified',
+          message: formData.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Submission failed');
+      }
+
+      setStatus('success');
+      setFormData(initialFormData);
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleChange = (
@@ -73,10 +100,20 @@ export default function Contact() {
               onSubmit={handleSubmit}
               className="p-6 md:p-8 rounded-2xl bg-card border border-white/5 shadow-card space-y-5"
             >
-              {submitted && (
+              {status === 'success' && (
                 <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
-                  Thank you! Your inquiry has been received. Connect a backend service to enable
-                  real email delivery.
+                  Thank you! Your inquiry has been sent. I&apos;ll get back to you within 1–2
+                  business days.
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                  Something went wrong. Please try again or email me directly at{' '}
+                  <a href={`mailto:${siteConfig.email}`} className="underline hover:text-red-300">
+                    {siteConfig.email}
+                  </a>
+                  .
                 </div>
               )}
 
@@ -166,9 +203,15 @@ export default function Contact() {
                 />
               </div>
 
-              <Button type="submit" variant="primary" className="w-full sm:w-auto" showArrow={false}>
+              <Button
+                type="submit"
+                variant="primary"
+                className="w-full sm:w-auto"
+                showArrow={false}
+                disabled={status === 'submitting'}
+              >
                 <span className="flex items-center gap-2">
-                  Send Project Inquiry
+                  {status === 'submitting' ? 'Sending...' : 'Send Project Inquiry'}
                   <Send className="w-4 h-4" />
                 </span>
               </Button>

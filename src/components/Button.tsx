@@ -10,6 +10,7 @@ interface ButtonProps {
   className?: string;
   type?: 'button' | 'submit';
   showArrow?: boolean;
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -20,6 +21,7 @@ export default function Button({
   className = '',
   type = 'button',
   showArrow = true,
+  disabled = false,
 }: ButtonProps) {
   const reducedMotion = useReducedMotion();
 
@@ -67,7 +69,8 @@ export default function Button({
     <motion.button
       type={type}
       onClick={onClick}
-      className={`group ${baseStyles} ${variants[variant]} ${className}`}
+      disabled={disabled}
+      className={`group ${baseStyles} ${variants[variant]} ${className} disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none`}
       {...motionProps}
     >
       {content}
