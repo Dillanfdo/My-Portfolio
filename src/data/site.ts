@@ -20,17 +20,3 @@ export const navLinks = [
   { label: 'Process', href: '#process' },
   { label: 'Contact', href: '#contact' },
 ] as const;
-
-export const technologies = [
-  'React',
-  'Next.js',
-  'TypeScript',
-  'JavaScript',
-  'Tailwind CSS',
-  'Material UI',
-  'Redux',
-  'Zustand',
-  'Vercel',
-  'Node.js',
-  'PostgreSQL',
-] as const;
