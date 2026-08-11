@@ -8,6 +8,7 @@ import { siteConfig } from '@/data/site';
 interface FormData {
   name: string;
   email: string;
+  phone: string;
   company: string;
   need: string;
   message: string;
@@ -16,6 +17,7 @@ interface FormData {
 const initialFormData: FormData = {
   name: '',
   email: '',
+  phone: '',
   company: '',
   need: '',
   message: '',
@@ -30,7 +32,7 @@ export default function Contact() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    
+
 
     try {
       const response = await fetch(siteConfig.formspreeEndpoint, {
@@ -45,6 +47,7 @@ export default function Contact() {
           _replyto: formData.email,
           _subject: `New Project Inquiry from ${formData.name}`,
           company: formData.company || 'Not provided',
+          phone: formData.phone || 'Not provided',
           need: formData.need || 'Not specified',
           message: formData.message,
         }),
@@ -151,19 +154,37 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-text-primary mb-2">
-                  Business / Company
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-background border border-white/10 text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-colors"
-                  placeholder="Your business name"
-                />
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-text-primary mb-2">
+                    Mobile Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-white/10 text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-colors"
+                    placeholder="+91 98765 43210"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium text-text-primary mb-2">
+                    Business / Company
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-white/10 text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-colors"
+                    placeholder="Your business name"
+                  />
+                </div>
               </div>
 
               <div>
