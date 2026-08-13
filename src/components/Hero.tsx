@@ -67,8 +67,8 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-text-secondary leading-relaxed max-w-xl mb-8"
             >
-              I&apos;m a frontend developer with {siteConfig.experienceYears} years of experience
-              creating fast, responsive and polished digital experiences for businesses and products.
+              I&apos;m a frontend developer with {siteConfig.experienceYears} years of professional
+              experience building responsive web applications with React, Next.js and TypeScript.
             </motion.p>
 
             <motion.div
@@ -78,9 +78,9 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4 mb-8"
             >
               <Button href="#contact">Start a Project</Button>
-              <Button href="#work" variant="secondary" showArrow={false}>
+              <Button href="#experience" variant="secondary" showArrow={false}>
                 <span className="flex items-center gap-2">
-                  View My Work
+                  See My Experience
                   <ArrowDown className="w-4 h-4" />
                 </span>
               </Button>

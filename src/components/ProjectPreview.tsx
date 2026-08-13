@@ -1,19 +1,17 @@
-import type { Project } from '@/data/projects';
-import BloomPreview from './previews/BloomPreview';
-import HealthcarePreview from './previews/HealthcarePreview';
+import type { ProjectPreview as PreviewType } from '@/data/upcomingProjects';
 import InteriorPreview from './previews/InteriorPreview';
 import RestaurantPreview from './previews/RestaurantPreview';
+import ClinicPreview from './previews/ClinicPreview';
 
 interface ProjectPreviewProps {
-  preview: Project['preview'];
+  preview: PreviewType;
 }
 
 export default function ProjectPreview({ preview }: ProjectPreviewProps) {
   const previews = {
-    bloom: BloomPreview,
-    healthcare: HealthcarePreview,
     interior: InteriorPreview,
     restaurant: RestaurantPreview,
+    clinic: ClinicPreview,
   };
 
   const PreviewComponent = previews[preview];

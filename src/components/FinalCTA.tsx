@@ -22,7 +22,7 @@ export default function FinalCTA() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button href="#contact">Start a Conversation</Button>
-              <Button href="#work" variant="secondary">View My Work</Button>
+              <Button href="#experience" variant="secondary">See My Experience</Button>
             </div>
             <a
               href={`mailto:${siteConfig.email}`}

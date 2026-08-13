@@ -1,14 +1,13 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import TechMarquee from '@/components/TechMarquee';
-import Projects from '@/components/Projects';
+import ProfessionalExperience from '@/components/ProfessionalExperience';
 import BusinessOwner from '@/components/BusinessOwner';
+import UpcomingProjects from '@/components/UpcomingProjects';
 import WhyWorkWithMe from '@/components/WhyWorkWithMe';
 import Process from '@/components/Process';
 import TechnicalDifferentiator from '@/components/TechnicalDifferentiator';
 import About from '@/components/About';
-import Experience from '@/components/Experience';
-import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
@@ -22,14 +21,13 @@ export default function Home() {
       <main>
         <Hero />
         <TechMarquee />
-        <Projects />
+        <ProfessionalExperience />
         <BusinessOwner />
+        <UpcomingProjects />
         <WhyWorkWithMe />
         <Process />
         <TechnicalDifferentiator />
         <About />
-        <Experience />
-        <Testimonials />
         <Pricing />
         <FAQ />
         <Contact />
